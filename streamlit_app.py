@@ -18,11 +18,12 @@ inventory = {
     "Drinks": 100
 }
 
-# Function to handle food orders
+# Function to handle food orders and calculate price
 def place_order(order_item, quantity):
     if inventory[order_item] >= quantity:
         inventory[order_item] -= quantity
-        return f"Order placed: {quantity} {order_item}(s). Remaining: {inventory[order_item]}"
+        total_price = menu[order_item] * quantity
+        return f"Order placed: {quantity} {order_item}(s). Total Price: ${total_price}. Remaining: {inventory[order_item]}"
     else:
         return f"Insufficient stock for {order_item}. Only {inventory[order_item]} left."
 
@@ -72,7 +73,7 @@ if st.button("Assign Task"):
     task_result = assign_task(task, staff)
     st.write(task_result)
 
-# Section 4: Automate responses to customer queries
+# Section 4: Customer Support Automation
 st.header("Customer Support Automation")
 user_query = st.text_input("Ask a question (e.g., What is on the menu?)")
 if st.button("Get Response"):
