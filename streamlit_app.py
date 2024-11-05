@@ -18,6 +18,7 @@ inventory = {
     "Drinks": 100
 }
 
+
 # Function to handle food orders and calculate price
 def place_order(order_item, quantity):
     if inventory[order_item] >= quantity:
@@ -27,9 +28,7 @@ def place_order(order_item, quantity):
     else:
         return f"Insufficient stock for {order_item}. Only {inventory[order_item]} left."
 
-# Function to manage tasks for staff
-def assign_task(task, staff):
-    return f"Task '{task}' has been assigned to {staff}."
+
 
 # Streamlit app UI
 st.title("F&B Manpower Assistance System")
@@ -52,26 +51,8 @@ if st.button("Place Order"):
     result = place_order(order_item, quantity)
     st.write(result)
 
-# Section 2: Display and manage inventory
-st.header("Inventory Management")
-if st.button("Check Inventory"):
-    st.write("Current inventory levels:")
-    for item, stock in inventory.items():
-        st.write(f"{item}: {stock} remaining")
 
-# Section 3: Assign tasks to staff
-st.header("Staff Task Assignment")
-tasks = ["Take orders", "Prepare food", "Deliver orders", "Clean tables", "Restock inventory"]
-staff_list = ["Staff 1", "Staff 2", "Staff 3", "Staff 4"]
 
-# Input for task assignment
-task = st.selectbox("Select task", tasks)
-staff = st.selectbox("Assign to", staff_list)
-
-# Assign task button
-if st.button("Assign Task"):
-    task_result = assign_task(task, staff)
-    st.write(task_result)
 
 # Section 4: Customer Support Automation
 st.header("Customer Support Automation")
@@ -98,18 +79,4 @@ if st.button("Get Response"):
     else:
         st.write("Sorry, I didn't understand that. Please try again or contact customer support for more help.")
 
-# Section 5: Generate simple sales report
-st.header("Sales Report Generation")
-sales_data = {
-    "Pizza": 100,
-    "Burger": 80,
-    "Pasta": 60,
-    "Salad": 40,
-    "Drinks": 200
-}
-
-if st.button("Generate Sales Report"):
-    st.write("Sales report:")
-    for item, sales in sales_data.items():
-        st.write(f"{item}: {sales} units sold")
 
